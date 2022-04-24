@@ -5,7 +5,14 @@
 
 <script>
 export default {
-  name: 'login'
+  name: 'login',
+  mounted() {
+    this.$request.get('/login', {
+      name: 'sp'
+    }).then(res=> {
+      console.log(res);
+    })
+  }
 }
 </script>
 

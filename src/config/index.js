@@ -1,16 +1,17 @@
 const env = import.meta.env.MODE || 'prod'
+console.log(import.meta.env,'huanjing');
 const EnvConfig = {
   dev: {
-    baseApi: '',
+    baseApi: '/',
     mockApi: 'https://www.fastmock.site/mock/b64099ddf8d91cae9f4b28b810ae219d/api',
 
   },
   test: {
-    baseApi: '',
+    baseApi: '/test',
     mockApi: 'https://www.fastmock.site/mock/b64099ddf8d91cae9f4b28b810ae219d/api',
   },
-  pord: {
-    baseApi: '',
+  prod: {
+    baseApi: '/prod',
     mockApi: 'https://www.fastmock.site/mock/b64099ddf8d91cae9f4b28b810ae219d/api',
   }
 }
