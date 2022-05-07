@@ -28,7 +28,7 @@ service.interceptors.response.use(res=> {
   // console.log(res,'code');
   if(code === 200) {
     return data
-  }else if(code === 40001) { //登录失效
+  }else if(code === 500001) { //登录失效
     setTimeout(()=> {
       ElMessage.error(TOKEN_INVALID)
     },1500)

@@ -4,10 +4,23 @@
 import request from '../utils/request'
 export default {
   login(data) {
-    console.log(data,'123');
     return request({
-      url: '/user/login',
+      url: '/users/login',
       method: 'post',
+      data,
+    })
+  },
+  getNoticeCount(data) {
+    return request({
+      url: '/leave/count',
+      method: 'get',
+      data,
+    })
+  },
+  getMenuList(data) {
+    return request({
+      url: '/menu/list',
+      method: 'get',
       data,
     })
   }
