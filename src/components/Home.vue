@@ -38,7 +38,8 @@
           <div class="menu-fold" @click="toggle">
             <el-icon><fold /></el-icon>
           </div>
-          <div class="bread">面包屑</div>
+          <!-- <div class="bread">面包屑</div> -->
+          <bread-crumb />
         </div>
         <div class="nav-right">
           <el-badge class="notice" :value="noticeCount" type="danger">
@@ -77,6 +78,7 @@ import {
   Right
 } from '@element-plus/icons-vue'
 import TreeMenu from './TreeMenu.vue'
+import BreadCrumb from './BreadCrumb.vue'
 export default {
   name: 'home',
   components: {
@@ -84,7 +86,8 @@ export default {
     Bell,
     Fold,
     Right,
-    TreeMenu
+    TreeMenu,
+    BreadCrumb
   },
   data() {
     return {
