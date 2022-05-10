@@ -4,6 +4,7 @@
 import axios from "axios";
 import config from "../config";
 import router from "../router";
+import storage from "./storage";
 import { ElMessage } from "element-plus";
 
 const TOKEN_INVALID = 'TOKEN失效，请重新登录'
@@ -18,7 +19,8 @@ service.interceptors.request.use(req=>{
 
   //TO-DO
   const hearders = req.headers
-  if(!hearders.Authorization) hearders.Authorization = 'spirit'
+  const {token} = storage.getItem('userInfo')
+  if(!hearders.Authorization) hearders.Authorization = 'Bearer ' + token
   return req
 })
 
@@ -26,7 +28,7 @@ service.interceptors.request.use(req=>{
 service.interceptors.response.use(res=> {
   const {code, data, msg} = res.data
   // console.log(res,'code');
-  if(code === 200) {
+  if(code == 200) {
     return data
   }else if(code === 500001) { //登录失效
     setTimeout(()=> {
