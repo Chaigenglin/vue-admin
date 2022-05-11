@@ -8,6 +8,7 @@ export default {
       url: '/users/login',
       method: 'post',
       data,
+      mock: false
     })
   },
   getNoticeCount(data) {
@@ -15,6 +16,7 @@ export default {
       url: '/leave/count',
       method: 'get',
       data,
+      mock: true,
     })
   },
   getMenuList(data) {
@@ -22,6 +24,7 @@ export default {
       url: '/menu/list',
       method: 'get',
       data,
+      mock: true,
     })
   }
 }

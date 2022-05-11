@@ -99,6 +99,7 @@ export default {
     }
   },
   mounted() {
+    this.getMenuList()
     this.getNoticeCount()
   },
   methods: {
