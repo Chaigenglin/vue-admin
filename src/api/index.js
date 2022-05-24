@@ -11,6 +11,14 @@ export default {
       mock: false
     })
   },
+  userSubmit(data) {
+    return request({
+      url: '/users/operate',
+      method: 'post',
+      data,
+      mock: true
+    })
+  },
   getNoticeCount(data) {
     return request({
       url: '/leave/count',
@@ -26,5 +34,37 @@ export default {
       data,
       mock: true,
     })
-  }
+  },
+  getUserList(data) {
+    return request({
+      url: '/users/list',
+      method: 'get',
+      data,
+      mock: true,
+    })
+  },
+  getRoleList(data) {
+    return request({
+      url: '/roles/allList',
+      method: 'get',
+      data,
+      mock: true,
+    })
+  },
+  getDeptList(data) {
+    return request({
+      url: '/dept/list',
+      method: 'get',
+      data,
+      mock: true,
+    })
+  },
+  userDel(data) {
+    return request({
+      url: '/users/detele',
+      method: 'post',
+      data,
+      mock: true,
+    })
+  },
 }
