@@ -16,6 +16,14 @@ export default {
       url: '/users/operate',
       method: 'post',
       data,
+      mock: false
+    })
+  },
+  menuSubmit(data) {
+    return request({
+      url: '/menu/operate',
+      method: 'post',
+      data,
       mock: true
     })
   },
@@ -40,7 +48,7 @@ export default {
       url: '/users/list',
       method: 'get',
       data,
-      mock: true,
+      mock: false,
     })
   },
   getRoleList(data) {

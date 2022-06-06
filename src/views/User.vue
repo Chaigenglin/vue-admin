@@ -63,7 +63,6 @@
         </el-form-item>
         <el-form-item prop="state" label="状态">
           <el-select v-model="userForm.state" placeholder="请选择状态">
-              <el-option :value="0" label="所有"></el-option>
               <el-option :value="1" label="在职"></el-option>
               <el-option :value="2" label="离职"></el-option>
               <el-option :value="3" label="试用期"></el-option>
@@ -92,6 +91,7 @@
 
 <script>
 import { onMounted, reactive, ref, getCurrentInstance, toRaw } from 'vue'
+import utils from '../utils/utils'
 export default {
   name: 'user',
   setup() {
@@ -104,7 +104,7 @@ export default {
     const { proxy, ctx } = getCurrentInstance()
     console.log(proxy);
     const user = reactive({
-      state: 3,
+      state: 0,
     })
     const userForm = reactive({})
     const pager = reactive({
@@ -187,24 +187,28 @@ export default {
       {
         label: '注册时间',
         prop: 'createTime',
+        formatter(row, column, value) {
+          return utils.formateDate(new Date(value));
+        }
       },
       {
         label: '最后登录时间',
         prop: 'lastLoginTime',
+        formatter(row, column, value) {
+          return utils.formateDate(new Date(value));
+        }
       },
     ])
     // 获取用户列表
     const getUserList = async()=> {
       let params = {...user, ...pager}
       const { list, page } = await proxy.$api.getUserList(params)
-      console.log(list, page);
       userList.value = list
       pager.total = page.total
     }
     //获取部门列表
     const getDeptList = async()=> {
       const list = await proxy.$api.getDeptList()
-      console.log(list);
       deptList.value = list
     }
     //获取角色列表

@@ -31,10 +31,11 @@ service.interceptors.response.use(res=> {
   if(code == 200) {
     return data
   }else if(code === 500001) { //登录失效
+    ElMessage.error(TOKEN_INVALID)
     setTimeout(()=> {
-      ElMessage.error(TOKEN_INVALID)
+      console.log('跳转登录');
+      router.push('/login')
     },1500)
-    router.push('/login')
     return Promise.reject(TOKEN_INVALID)
   }else {
     ElMessage.error(msg || NETWORK_ERROR)
