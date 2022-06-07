@@ -37,7 +37,7 @@
           <template #default="scope">
             <el-button @click="handleAdd(2, scope.row)">新增</el-button>
             <el-button @click="handleEdit(scope.row)">编辑</el-button>
-            <el-button type="danger" @click="handleDel(scope.row)">删除</el-button>
+            <el-button type="danger" @click="handleDel(scope.row._id)">删除</el-button>
           </template>
         </el-table-column>
       </el-table>
@@ -214,8 +214,20 @@ export default {
         this.menuForm.parentId = [...row.parentId, row._id].filter(item=> item)
       }
     },
-    handleEdit() {},
-    handleDel() {},
+    handleEdit(row) {
+      this.showModal = true
+      this.action = 'edit'
+      //弹框显示后在赋值 否则初始化有问题
+      this.$nextTick(_=> {
+        Object.assign(this.menuForm, row)
+      })
+    },
+    async handleDel(id) {
+      let res = await this.$api.menuSubmit({_id: id, action: 'delete'})
+      if(res.code == 200) {
+        this.$message.success('删除成功')
+      }
+    },
     handleCencal() {
       this.showModal = false
       this.handleReset('menuRef')
