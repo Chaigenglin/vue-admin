@@ -99,6 +99,7 @@
 
 <script>
 import utils from '../utils/utils'
+import { ElMessage, ElMessageBox } from 'element-plus'
 export default {
   name: 'menu',
   data() {
@@ -222,11 +223,21 @@ export default {
         Object.assign(this.menuForm, row)
       })
     },
-    async handleDel(id) {
-      let res = await this.$api.menuSubmit({_id: id, action: 'delete'})
-      if(res.code == 200) {
-        this.$message.success('删除成功')
-      }
+    handleDel(id) {
+      ElMessageBox.confirm(
+        '确定删除吗',
+        'Warning',
+        {
+          confirmButtonText: '确定',
+          cancelButtonText: '取消',
+          type: 'warning',
+        }
+      ).then(async ()=> {
+        let res = await this.$api.menuSubmit({_id: id, action: 'delete'})
+        if(res) {
+          this.$message.success('删除成功')
+        }
+      })
     },
     handleCencal() {
       this.showModal = false
